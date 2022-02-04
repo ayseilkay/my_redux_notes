@@ -1,6 +1,6 @@
 
 import {useDispatch, useSelector} from 'react-redux'
-import { toggle } from '../redux/todos/todosSlice';
+import { toggle,destroy } from '../redux/todos/todosSlice';
 
 function TodoList (){
 	const items = useSelector((state) => state.todos.items);
@@ -24,7 +24,7 @@ function TodoList (){
 				<div className="view">
 					<input className="toggle" type="checkbox" checked={item.completed} onChange={()=> dispath(toggle({id: item.id}))}/>
 					<label>{item.title}</label>
-					<button className="destroy"></button>
+					<button className="destroy" onClick={()=> dispath(destroy({id:item.id}))}></button>
 				</div>
 			</li>
 			))}
