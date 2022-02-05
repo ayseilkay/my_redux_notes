@@ -9,7 +9,7 @@ function Form (){
     const handleSubmit = (e)=>{
         if(!title) return; // inputa title girilmemişse bos veri eklemesin
         e.preventDefault();
-        dispatch(addTodo({id:nanoid(),title,completed:false}));
+        dispatch(addTodo({title}));
         setTitle(''); //kaydettiken sonra inputu bosaltalım.
     }
     

@@ -1,4 +1,4 @@
-import {createSlice} from '@reduxjs/toolkit'
+import {createSlice, nanoid} from '@reduxjs/toolkit'
 let filtered=[];
 export const todosSlice = createSlice({
     name: 'todos',
@@ -17,8 +17,19 @@ export const todosSlice = createSlice({
         activeFilter:'all'
     },
     reducers: {
-        addTodo:(state,action)=>{
-            state.items.push(action.payload);
+        addTodo:{
+            reducer:(state,action)=>{
+                state.items.push(action.payload);
+            },
+            prepare: ({title})=>{//ilk dipatch calsıır. sonra prepare varsa o çalışır.return edien ifade alınır ve action altına yazılır.
+                return {
+                    payload:{
+                        id: nanoid(),
+                        completed: false,
+                        title
+                    }
+                }
+            }
         },
         toggle : (state,action)=>{
            const {id}=action.payload;// paylodın icinden id sini buldum
