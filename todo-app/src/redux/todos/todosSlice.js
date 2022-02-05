@@ -1,5 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
-
+let filtered=[];
 export const todosSlice = createSlice({
     name: 'todos',
     initialState: {
@@ -44,5 +44,14 @@ export const todosSlice = createSlice({
     },
 });
 
+export const selectActiveFilter = (state) => state.todos.activeFilter;
+export const selectTodos = (state) => state.todos.items;
+export const selectFilteredTodos = (state)=>{
+    if(state.todos.activeFilter === "all"){
+        return state.todos.items;
+    }
+filtered = state.todos.items.filter((item)=> state.todos.activeFilter === "active" ? item.completed === false : item.completed === true);
+    return filtered
+}
 export const {addTodo,toggle,destroy,changeActiveFilter,clearCompleted} = todosSlice.actions;
 export default todosSlice.reducer;

@@ -7,6 +7,7 @@ function Form (){
     const [title,setTitle]=useState('');
     const dispatch = useDispatch();
     const handleSubmit = (e)=>{
+        if(!title) return; // inputa title girilmemişse bos veri eklemesin
         e.preventDefault();
         dispatch(addTodo({id:nanoid(),title,completed:false}));
         setTitle(''); //kaydettiken sonra inputu bosaltalım.
