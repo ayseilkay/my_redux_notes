@@ -1,6 +1,9 @@
 
+import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
-import { toggle,destroy,selectFilteredTodos} from '../redux/todos/todosSlice';
+import { toggle,destroy,selectFilteredTodos,getTodoAsync,selectisLoading,selectError} from '../redux/todos/todosSlice';
+import Error from './Error';
+import Loading from './Loading';
 // let filtered= [];
 function TodoList (){
 	// const items = useSelector(selectTodos);
@@ -9,6 +12,19 @@ function TodoList (){
 	
 	const dispath = useDispatch();
 	const filteredTodos = useSelector(selectFilteredTodos);
+	const isLoading = useSelector(selectisLoading);
+	const error = useSelector(selectError);
+	
+	useEffect(()=>{
+		dispath(getTodoAsync())
+	},[dispath])
+
+	if(isLoading){
+		return <Loading/>
+	}
+	if(error){
+		return <Error message={error}/>
+	}
     return (
         <>
         <ul className="todo-list">
