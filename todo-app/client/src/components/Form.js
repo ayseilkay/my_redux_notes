@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
-import { addTodoAsync, selectAddNewTodoError,selectAddNewTodoLoading } from '../redux/todos/todosSlice';
+import { addTodoAsync} from '../redux/todos/services';
+import {selectAddNewTodoError,selectAddNewTodoLoading } from '../redux/todos/todosSlice';
 import Error from './Error';
 import Loading from './Loading';
 

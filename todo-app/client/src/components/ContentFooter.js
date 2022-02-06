@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeActiveFilter, clearCompleted,selectTodos,selectActiveFilter } from "../redux/todos/todosSlice";
 
@@ -6,6 +7,10 @@ function ContentFooter(){
 	const itemsLeft = items.filter(item => !item.completed).length
 	const activeFilter = useSelector(selectActiveFilter);// filtrelermelerden hangisi aktif 
 	const dispatch = useDispatch();
+
+	useEffect(()=>{
+		localStorage.setItem("activeFilter",activeFilter);
+	},[activeFilter])
     return  (
         <section>
         <footer className="footer">

@@ -1,7 +1,8 @@
 
 import { useEffect } from 'react';
 import {useDispatch, useSelector} from 'react-redux'
-import {selectFilteredTodos,getTodoAsync,selectisLoading,selectError,toggleTodoAsync,deleteTodoAsync} from '../redux/todos/todosSlice';
+import {getTodoAsync,toggleTodoAsync,deleteTodoAsync} from '../redux/todos/services';
+import{ selectFilteredTodos,selectisLoading,selectError} from '../redux/todos/todosSlice';
 import Error from './Error';
 import Loading from './Loading';
 // let filtered= [];
